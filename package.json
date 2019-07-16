@@ -1,0 +1,35 @@
+{
+  "name": "nodejs-demoapp",
+  "description": "Simple Node.js Express app for demos",
+  "version": "3.6.1",
+  "author": "Ben Coleman",
+  "engines": {
+    "node": "10.15.0"
+  },
+  "license": "MIT0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/benc-uk/nodejs-demoapp.git"
+  },
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "start-bg": "node server.js &",
+    "test": "npm run start-bg && ./node_modules/.bin/mocha  ./tests"
+  },
+  "dependencies": {
+    "applicationinsights": "^1.0.2",
+    "body-parser": "~1.18.2",
+    "dotenv": "^6.0.0",
+    "ejs": "~2.5.7",
+    "express": "~4.16.3",
+    "mongodb": "~2.2.0",
+    "morgan": "~1.9.0",
+    "request": "^2.85.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "mocha-junit-reporter": "^1.18.0"
+  }
+}

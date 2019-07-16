@@ -1,0 +1,6 @@
+projectKey=my:nodejsapp
+serverUrl=http://gitlab.neopath.com.br:9000
+serverVersion=7.6.0.21501
+dashboardUrl=http://gitlab.neopath.com.br:9000/dashboard?id=my%3Anodejsapp
+ceTaskId=AWklRNILK_UqefLJra8r
+ceTaskUrl=http://gitlab.neopath.com.br:9000/api/ce/task?id=AWklRNILK_UqefLJra8r

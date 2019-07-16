@@ -1,0 +1,43 @@
+stages:
+  - build
+  - unit_tests
+  - static_analysis
+  - deploy_registry
+
+
+build:
+  stage: build
+  tags:
+    - geral
+  script:
+    - "npm install"
+    
+unit_tests:
+  stage: unit_tests
+  tags:
+    - geral
+  script:
+    - echo -e "\n Testes unitários. \n"
+    - "npm install && npm test"
+   
+sonarqube:
+  stage: static_analysis
+  tags:
+    - geral
+  script:
+    - echo -e "\n Análise estática do código. \n"
+    - "./sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner"
+  allow_failure: false
+
+registry:
+  stage: deploy_registry
+  tags:
+    - geral
+  only:
+    - master
+  script:
+    - "echo Deploy "
+    - "docker login -u _json_key--password-stdin https://gcr.io < $GCLOUD_SERVICE_KEY"
+    - "docker build -t gcr.io/$GCLOUD_PROJECT_ID/aplicacao-nodejs-exemplo1:v1.0 ."
+    - "docker push gcr.io/$GCLOUD_PROJECT_ID/aplicacao-nodejs-exemplo1:v1.0"
+

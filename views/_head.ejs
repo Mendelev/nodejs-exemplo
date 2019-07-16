@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="shortcut icon" type="image/png" href="images/node-icon.png" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/darkly/bootstrap.min.css" rel="stylesheet" integrity="sha384-S7YMK1xjUjSpEnF4P8hPUcgjXYLZKK3fQW1j5ObLSl787II9p8RO9XUGehRmKsxd" crossorigin="anonymous">
+    <!--link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <%if (process.env.APPINSIGHTS_INSTRUMENTATIONKEY) { %>
+      <script type="text/javascript">
+        var appInsights=window.appInsights||function(config){
+          function i(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},u=document,e=window,o="script",s="AuthenticatedUserContext",h="start",c="stop",l="Track",a=l+"Event",v=l+"Page",y=u.createElement(o),r,f;y.src=config.url||"https://az416426.vo.msecnd.net/scripts/a/ai.0.js";u.getElementsByTagName(o)[0].parentNode.appendChild(y);try{t.cookie=u.cookie}catch(p){}for(t.queue=[],t.version="1.0",r=["Event","Exception","Metric","PageView","Trace","Dependency"];r.length;)i("track"+r.pop());return i("set"+s),i("clear"+s),i(h+a),i(c+a),i(h+v),i(c+v),i("flush"),config.disableExceptionTracking||(r="onerror",i("_"+r),f=e[r],e[r]=function(config,i,u,e,o){var s=f&&f(config,i,u,e,o);return s!==!0&&t["_"+r](config,i,u,e,o),s}),t
+          }({
+              instrumentationKey:"<%=process.env.APPINSIGHTS_INSTRUMENTATIONKEY%>"
+          });
+          window.appInsights=appInsights;
+          appInsights.trackPageView();
+      </script> 
+    <% } %>
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand logo" href="/"><img class="navbar-left" src="images/node-icon.png"> &nbsp; Node.js Demo</a>
+        </div>
+    
+        <div class="navbar-collapse collapse">
+          <a class="btn btn-success navbar-btn" href='/info'><i class="fa fa-info-circle"></i>&nbsp; INFO</a>
+          <%if (process.env.WEATHER_API_KEY) { %><a class="btn btn-success navbar-btn" href='/weather'><i class="fa fa-cloud"></i>&nbsp; WEATHER</a><% } %>         
+          <a class="btn btn-success navbar-btn" href='/load'><i class="fa fa-fire"></i>&nbsp; CPU LOAD</a>  
+          <%if (process.env.MONGO_CONNSTR) { %><a class="btn btn-success navbar-btn" href='/todo'><i class="fas fa-check-square"></i>&nbsp; TODO</a><% } %>
+          
+          <div class="nav navbar-nav navbar-right">
+            <%if (user) { %><span class="btn btn-disabled navbar-btn"><i class="fa fa-user-circle username"></i>&nbsp; <%= user %></span><% } %>
+          </div>  
+
+        </div>
+      </div>
+    </nav>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
+    <div class="container body-content">

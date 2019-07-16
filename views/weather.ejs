@@ -1,0 +1,53 @@
+<%- include('_head.ejs') %>
+
+<br/>
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h2 class="panel-title"><i class="fa fa-globe"></i>&nbsp; Weather and Location</h2>
+  </div>
+  <div class="panel-body">
+    <table>
+      <tr>
+        <td> <canvas id="weather_icon" width="256" height="256"></canvas> </td>
+        <td class="weather-info">
+          <ul id="weather-list">
+
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div>
+<img src="/images/darksky.png" height="64px"/>
+</div>
+
+<script src='/js/skycons.js'></script>
+<script>
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(getWeather);
+  } else {
+    console.err("Geolocation is not supported by this browser.");
+  }
+
+  function getWeather(pos) {
+    $.get(`/api/weather/${pos.coords.latitude}/${pos.coords.longitude}`, weather => {
+      var skycons = new Skycons({ "color": "#3498db" });
+      skycons.add("weather_icon", weather.icon);
+      skycons.play();
+
+      $('#weather-list').append(`<li>The weather currently is: &nbsp; ${weather.summary}</li>`)
+      $('#weather-list').append(`<li>The temperature is: &nbsp; ${weather.temp}°C</li>`)
+      $('#weather-list').append(`<li>Chance of rain is: &nbsp; ${weather.precip}%</li>`)
+      $('#weather-list').append(`<li>Wind speed is: &nbsp; ${weather.wind}mph</li>`)
+      $('#weather-list').append(`<li>UV index is: &nbsp; ${weather.uv}</li>`)
+      $('#weather-list').append(`<hr/>`)
+      $('#weather-list').append(`<li>Forecast today: &nbsp; ${weather.forecastShort}</li>`)
+      $('#weather-list').append(`<li>Forecast week: &nbsp; ${weather.forecastLong}</li>`)
+    });
+  }
+</script>
+
+<%- include('_foot.ejs') %>

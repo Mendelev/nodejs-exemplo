@@ -1,0 +1,89 @@
+body {
+  padding-top: 70px;
+}
+.logo {
+  margin-top: 0px;
+}
+.logo img {
+  height: 50px;
+  margin-top: -10px;
+}
+.username {
+  font-size: 150%;
+}
+.jumbotron {
+  background-color: rgba(9, 27, 58, 0.38)
+}
+.navbar, .navbar-brand  {
+  font-size: 1.3em;
+}
+.navbar-btn  {
+  font-size: 1.1em;
+}
+h2 {
+  font-size: 3.5em;
+}
+.footnote {
+  font-size: 90%;
+  float: right;
+  top: -30px;
+  padding-right:20px;
+}
+table i {
+  font-size: 2em !important;
+}
+table td {
+  padding-bottom: 10px !important;
+  padding-top: 10px !important;
+  font-size: 130%
+}
+.index-head {
+  margin-top:-20px; 
+  border-radius:15px; 
+  padding:15px
+}
+.panel-title {
+  font-size: 2em !important;
+}
+.weather-info {
+  padding-left:30px; 
+  font-size:1.8em
+}
+.todo td {
+  font-size: 200%;
+}
+.todo input[type=checkbox] {
+  transform: scale(2.5);
+}
+.todo-done {
+  text-decoration: line-through;
+  color: #999999;
+}
+.todo-check {
+  cursor: pointer;
+}
+.todo-title:focus {
+  background-color: #eeeeee;
+  color: #333333;
+  padding: 5px;
+  border-radius: 8px;
+  border: 3px solid #0793f0;
+  outline: 0px solid transparent;
+  box-shadow: 0 0 15px #0793f0;
+}
+.todo-button {
+  font-size: 150%;
+}
+.todo-panel-title {
+  margin-top: 10px;
+}
+.envvars {
+  word-break: break-all
+}
+.envtable {
+  max-height:500px;
+  overflow-y: scroll;
+  font-family: "Lucida Console", "Lucida Sans Typewriter", monaco, "Bitstream Vera Sans Mono", monospace;
+  color:#45da59;
+  background-color:#222222;
+}

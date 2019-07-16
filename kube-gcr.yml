@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-exemplo
+spec:
+  selector:
+    matchLabels:
+      run: nodejs-exemplo
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: nodejs-exemplo
+    spec:
+      containers:
+      - name: nodejs-exemplo
+        image: gcr.io/double-approach-232414/nodejs-exemplo:v1.0
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: gcr-json-key
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs-exemplo
+  labels:
+    run: nodejs-exemplo
+spec:
+  type: NodePort
+  ports:
+  - port: 3000
+    nodePort: 31111
+    targetPort: 3000
+    protocol: TCP
+    name: http
+  - port: 443
+    protocol: TCP
+    name: https
+  selector:
+    run: nodejs-exemplo
+
+---
